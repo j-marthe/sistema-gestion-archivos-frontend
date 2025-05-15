@@ -1,0 +1,28 @@
+mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 70vh;
+    overflow: auto;
+  }
+  
+  input[type="file"] {
+    margin-top: 8px;
+  }
+  
+  mat-dialog-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  
+  button[mat-button], button[mat-flat-button] {
+    min-width: 100px;
+  }
+  

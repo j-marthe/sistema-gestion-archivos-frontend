@@ -1,0 +1,81 @@
+<h2 mat-dialog-title>Detalles del Documento</h2>
+
+<ng-container *ngIf="formulario">
+  <mat-dialog-content>
+    <form [formGroup]="formulario" class="formulario-vertical">
+      
+      <!-- Nombre (no editable) -->
+      <mat-form-field class="w-full">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre">
+      </mat-form-field>
+
+      <!-- Categoría (no editable) -->
+      <mat-form-field class="w-full">
+        <mat-label>Categoría</mat-label>
+        <mat-select formControlName="categoria">
+          <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+            {{ categoria.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Estado -->
+      <mat-form-field class="w-full">
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="estado">
+          <mat-option value="Aprobado">Aprobado</mat-option>
+          <mat-option value="Rechazado">Rechazado</mat-option>
+          <mat-option value="Pendiente">Pendiente</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Permisos de acceso -->
+      <mat-form-field class="w-full">
+        <mat-label>Permisos de Acceso</mat-label>
+        <mat-select formControlName="permisosAcceso" multiple>
+          <mat-option value="Administrador">Administrador</mat-option>
+          <mat-option value="Usuarios del proyecto">Usuarios del proyecto</mat-option>
+          <mat-option value="Global">Global</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Campos extras -->
+      <ng-container *ngFor="let campo of camposExtras">
+        <mat-form-field class="w-full">
+          <mat-label>{{ campo }}</mat-label>
+          <input matInput [formControlName]="campo">
+        </mat-form-field>
+      </ng-container>
+
+      <!-- Subida de nueva versión -->
+      <h3>Subir nueva versión</h3>
+      <input type="file" (change)="seleccionarArchivo($event)">
+      <button mat-button (click)="subirNuevaVersion()" color="primary">Subir</button>
+
+      <!-- Restaurar versión -->
+      <h3>Restaurar versión</h3>
+      <mat-form-field *ngIf="versiones!.length > 0" appearance="fill">
+      <mat-label>Versión</mat-label>
+      <mat-select [(value)]="versionSeleccionada">
+        <mat-option *ngFor="let version of versiones" [value]="version.numeroVersion">
+          Versión {{ version.numeroVersion }} - {{ version.fecha | date:'short' }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="restaurarVersion()" [disabled]="!versionSeleccionada">
+      Restaurar versión
+    </button>
+
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="dialogRef.close()">Cancelar</button>
+    <button mat-button color="accent" (click)="guardarCambios()" [disabled]="formulario.invalid">Guardar cambios</button>
+  </mat-dialog-actions>
+</ng-container>
+
+
+

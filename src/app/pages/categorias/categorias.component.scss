@@ -1,0 +1,43 @@
+.categoria-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.acciones {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.buscador {
+  flex: 1;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+.categoria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.categoria-card {
+  position: relative;
+  padding: 1rem;
+
+  .categoria-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #1976d2;
+  }
+}

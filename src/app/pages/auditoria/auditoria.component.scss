@@ -1,0 +1,31 @@
+.auditoria-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.acciones {
+  display: flex;
+  margin-bottom: 1rem;
+
+  .buscador {
+    flex: 1;
+  }
+}
+
+.auditoria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+  gap: 2rem;
+}
+
+.auditoria-card {
+  padding: 0.75rem;
+
+  .fecha {
+    display: block;
+    margin-top: 0.5rem;
+    color: #777;
+    font-size: 0.85rem;
+  }
+}

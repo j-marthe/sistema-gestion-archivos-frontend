@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+
+<mat-card class="perfil-card">
+  <mat-card-title>Perfil de Usuario</mat-card-title>
+
+  <form [formGroup]="perfilForm" (ngSubmit)="actualizarPerfil()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Contraseña nueva (opcional)</mat-label>
+      <input matInput formControlName="contrasena" type="password" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Actualizar</button>
+  </form>
+  
+  <div *ngIf="mensaje" class="mensaje-exito">{{ mensaje }}</div>
+  <div *ngIf="errorMensaje" class="mensaje-error">{{ errorMensaje }}</div>
+
+
+  <mat-divider class="my-4"></mat-divider>
+
+  <h3>Últimos documentos añadidos</h3>
+  <mat-list *ngIf="documentos.length > 0; else sinDocumentos">
+    <mat-list-item *ngFor="let doc of documentos">
+      <div mat-line  class="listDocument">{{ doc.nombre }}</div>
+      <div mat-line class="secondary">
+        {{ doc.categoria }} | {{ doc.fechaRegistro | date }}
+      </div>
+    </mat-list-item>
+  </mat-list>
+
+  <ng-template #sinDocumentos>
+    <p>No has subido ningún documento todavía.</p>
+  </ng-template>
+</mat-card>

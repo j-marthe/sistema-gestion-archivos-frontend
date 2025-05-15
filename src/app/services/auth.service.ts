@@ -1,0 +1,78 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/enviroment/enviroment';
+import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  baseUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient,  private router: Router) {}
+
+  login(email: string, contrasena: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/auth/login`, { email, contrasena });
+  }
+
+  logout(): void {
+    console.log("Cerrar sesión");
+    localStorage.removeItem('token');
+    // Redirige a la página de login
+    this.router.navigate(['/login']);
+  }
+
+  getDecodedToken(): any {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+
+    try {
+      return jwtDecode(token);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  esAdmin(): boolean {
+    const decoded = this.getDecodedToken();
+    return decoded?.rol === 'Administrador';
+  }
+
+  editarUsuario(id: string, datos: any) {
+    return this.http.put(
+      `${this.baseUrl}/auth/usuarios/editar/${id}`, 
+      datos,
+      { responseType: 'text' }
+    );
+  }
+
+
+   getDocumentosUsuario(id: string) {
+    return this.http.get<any[]>(`${this.baseUrl}/auth/usuarios/${id}/documentos`);
+  }
+  
+  getUsuarios(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/auth/usuarios`);
+  }
+
+  getRoles(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/auth/roles`);
+  }
+
+  registrarUsuario(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/registro`, data);
+  }
+
+  eliminarUsuario(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/auth/usuarios/eliminar/${id}`);
+  }
+
+  cambiarRol(id: string, nuevoRolId: string): Observable<any> {
+    return this.http.put(`${this.baseUrl}/auth/roles/modificar-rol/${id}`, { nuevoRolId });
+  }
+
+
+}
+

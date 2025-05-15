@@ -1,0 +1,84 @@
+<h2 mat-dialog-title>Subir Documento</h2>
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="nombre" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Categoría</mat-label>
+    <mat-select formControlName="categoriaId">
+      <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+        {{ categoria.nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>  
+
+  <mat-form-field appearance="fill">
+    <mat-label>Etiquetas (separadas por coma)</mat-label>
+    <input matInput formControlName="etiquetas" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Código de Clasificación</mat-label>
+    <input matInput formControlName="codigoClasificacion" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Estado</mat-label>
+    <mat-select formControlName="estado">
+      <mat-option value="Borrador">Borrador</mat-option>
+      <mat-option value="Revisado">Revisado</mat-option>
+      <mat-option value="Aprobado">Aprobado</mat-option>
+      <mat-option value="Publicado">Publicado</mat-option>
+      <mat-option value="Archivado">Archivado</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Permisos de Acceso</mat-label>
+    <mat-select formControlName="permisosAcceso">
+      <mat-option value="Administrador">Administrador</mat-option>
+      <mat-option value="Usuarios del proyecto">Usuarios del proyecto</mat-option>
+      <mat-option value="Global">Global</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Formato</mat-label>
+    <input matInput formControlName="formato" placeholder="Ej: PDF" />
+    <mat-hint>Tipo de archivo (PDF, Word, etc).</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Año</mat-label>
+    <input matInput formControlName="anio" type="number" min="1900" max="2100" />
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Firma electrónica</mat-label>
+    <mat-select formControlName="firmaElectronica">
+      <mat-option [value]="true">Sí</mat-option>
+      <mat-option [value]="false">No</mat-option>
+    </mat-select>
+    <mat-hint>¿El documento tiene firma electrónica?</mat-hint>
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha de última modificación</mat-label>
+    <input matInput formControlName="fechaUltimaModificacion" [matDatepicker]="picker" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-hint>Última actualización del documento (Ej: 2025-03-01).</mat-hint>
+  </mat-form-field>
+
+  <div>
+    <label for="archivo">Archivo:</label>
+    <input type="file" (change)="seleccionarArchivo($event)" />
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-flat-button color="primary" (click)="subir()">Subir</button>
+</mat-dialog-actions>

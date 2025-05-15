@@ -1,0 +1,54 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px;
+  }
+
+  .search-input {
+    width: 100%; /* O ajusta el porcentaje según lo que necesites */
+    max-width: 600px; /* Establece un límite máximo de ancho */
+  }
+  
+  .upload-section {
+    margin: 0 20px 20px 20px;
+  }
+  
+  table {
+    width: 100%;
+    margin: 20px;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+.col-responsive {
+  display: table-cell;
+}
+
+table {
+  width: 100%;
+  margin-left: 10px;  /* Agregar margen izquierdo */
+  margin-right: 10px; /* Agregar margen derecho */
+  max-width: calc(100% - 20px); /* Dejar un pequeño margen a los lados */
+}
+
+@media (max-width: 767px) {
+  .col-responsive {
+    display: none;
+  }
+   /* Ocultar columnas adicionales en dispositivos móviles */
+  .mat-column-categoria,
+  .mat-column-etiquetas, 
+  .mat-column-codigoClasificacion, 
+  .mat-column-anio, 
+  .mat-column-fechaUltimaModificacion, 
+  .mat-column-formato, 
+  .mat-column-firmaElectronica, 
+  .mat-column-estado, 
+  .mat-column-permisosAcceso {
+    display: none;
+  }
+}
+

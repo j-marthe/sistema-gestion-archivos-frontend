@@ -1,0 +1,36 @@
+<mat-toolbar color="primary" class="navbar">
+  <span class="app-title" class="hide-on-desktop">SIGAM</span>
+  <span class="app-title" class="hide-on-mobile">Sistema de Gestión de Archivos y Metadatos</span>
+  <span class="spacer"></span>
+
+  <!-- Menú para navegación -->
+  <button mat-icon-button [matMenuTriggerFor]="mainMenu" class="hide-on-desktop">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Enlaces visibles en desktop -->
+  <div class="nav-links hide-on-mobile">
+    <a mat-button routerLink="/inicio" routerLinkActive="active-link">Inicio</a>
+    <a mat-button routerLink="/categorias" routerLinkActive="active-link">Categorías</a>
+    <a  mat-button routerLink="/auditoria" routerLinkActive="active-link">Auditoria</a>
+    <a  mat-button routerLink="/configuracion" routerLinkActive="active-link">Configuración</a>
+  </div>
+
+  <!-- Menú desplegable en móviles -->
+  <mat-menu #mainMenu="matMenu">
+    <button mat-menu-item routerLink="/inicio">Inicio</button>
+    <button mat-menu-item routerLink="/categorias">Categorías</button>
+    <button  mat-menu-item routerLink="/auditoria">Auditoria</button>
+    <button mat-menu-item routerLink="/configuracion">Configuración</button>
+  </mat-menu>
+
+  <!-- Usuario -->
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item (click)="verPerfil()">Perfil</button>
+    <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+  </mat-menu>
+</mat-toolbar>
+

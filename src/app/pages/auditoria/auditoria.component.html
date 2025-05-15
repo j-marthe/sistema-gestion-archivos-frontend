@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+
+<div class="auditoria-container">
+  <div class="acciones">
+    <mat-form-field appearance="outline" class="buscador">
+      <mat-label>Buscar</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (keyup)="filtrar()" placeholder="Usuario, archivo o acción..." />
+    </mat-form-field>
+  </div>
+
+  <div class="auditoria-grid" *ngIf="filtradas.length > 0">
+    <mat-card class="auditoria-card" *ngFor="let item of filtradas">
+      <mat-card-title>{{ item.archivo }}</mat-card-title>
+      <mat-card-subtitle>{{ item.usuario }} - {{ item.accion }}</mat-card-subtitle>
+      <mat-card-content>
+        <p>{{ item.detalle }}</p>
+        <small class="fecha">{{ item.fecha | date: 'medium' }}</small>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <p *ngIf="filtradas.length === 0">No se encontraron registros de auditoría.</p>
+</div>

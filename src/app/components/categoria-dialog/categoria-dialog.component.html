@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Nueva Categoría</h2>
+<mat-dialog-content>
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Nombre de la categoría</mat-label>
+    <input matInput [(ngModel)]="nombreCategoria" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cerrar()">Cancelar</button>
+  <button mat-flat-button color="primary" (click)="crear()">Crear</button>
+</mat-dialog-actions>

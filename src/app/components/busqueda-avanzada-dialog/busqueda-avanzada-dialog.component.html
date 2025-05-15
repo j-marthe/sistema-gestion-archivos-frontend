@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Búsqueda Avanzada</h1>
+<div mat-dialog-content [formGroup]="formulario" class="search-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="nombre">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Usuario</mat-label>
+    <input matInput formControlName="usuario">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Categoría</mat-label>
+    <mat-select formControlName="categoriaId">
+      <mat-option [value]="null">Todas</mat-option>
+      <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+        {{ categoria.nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha desde</mat-label>
+    <input matInput type="date" formControlName="fechaDesde">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha hasta</mat-label>
+    <input matInput type="date" formControlName="fechaHasta">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Etiquetas (separadas por coma)</mat-label>
+    <input matInput formControlName="etiquetas">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Valor de metadato</mat-label>
+    <input matInput formControlName="valorMetadato">
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-flat-button color="primary" (click)="buscar()">Buscar</button>
+</div>
+
+

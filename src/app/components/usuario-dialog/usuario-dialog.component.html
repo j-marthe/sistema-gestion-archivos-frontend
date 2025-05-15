@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>{{ isEdit ? 'Editar Usuario' : 'Nuevo Usuario' }}</h2>
+<form [formGroup]="usuarioForm" (ngSubmit)="guardar()">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="nombre">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full" *ngIf="!isEdit">
+    <mat-label>Contraseña</mat-label>
+    <input matInput type="password" formControlName="contrasena">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Rol</mat-label>
+    <mat-select formControlName="rolId">
+      <mat-option *ngFor="let rol of data.roles" [value]="rol.id">{{ rol.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="mt-4 text-right">
+    <button mat-button type="button" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">{{ isEdit ? 'Guardar' : 'Crear' }}</button>
+  </div>
+</form>
