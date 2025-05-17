@@ -40,6 +40,7 @@ import { BusquedaAvanzadaDialogComponent } from './components/busqueda-avanzada-
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { UsuarioDialogComponent } from './components/usuario-dialog/usuario-dialog.component';
+import { CambiarRolDialogComponent } from './components/cambiar-rol-dialog/cambiar-rol-dialog.component';
 
 
 
@@ -62,7 +63,8 @@ import { UsuarioDialogComponent } from './components/usuario-dialog/usuario-dial
     AuditoriaComponent,
     PerfilComponent,
     ConfiguracionComponent,
-    UsuarioDialogComponent
+    UsuarioDialogComponent,
+    CambiarRolDialogComponent
 
   ],
   imports: [

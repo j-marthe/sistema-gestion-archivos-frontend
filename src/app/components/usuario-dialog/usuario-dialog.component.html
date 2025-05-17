@@ -15,13 +15,6 @@
     <input matInput type="password" formControlName="contrasena">
   </mat-form-field>
 
-  <mat-form-field appearance="fill" class="w-full">
-    <mat-label>Rol</mat-label>
-    <mat-select formControlName="rolId">
-      <mat-option *ngFor="let rol of data.roles" [value]="rol.id">{{ rol.nombre }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
   <div class="mt-4 text-right">
     <button mat-button type="button" (click)="cancelar()">Cancelar</button>
     <button mat-raised-button color="primary" type="submit">{{ isEdit ? 'Guardar' : 'Crear' }}</button>

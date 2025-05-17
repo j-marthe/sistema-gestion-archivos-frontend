@@ -47,8 +47,6 @@ export class AuthService {
       { responseType: 'text' }
     );
   }
-
-
    getDocumentosUsuario(id: string) {
     return this.http.get<any[]>(`${this.baseUrl}/auth/usuarios/${id}/documentos`);
   }
@@ -62,15 +60,22 @@ export class AuthService {
   }
 
   registrarUsuario(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/auth/registro`, data);
+    return this.http.post(`${this.baseUrl}/auth/registro`, data, {
+      responseType: 'text'
+    });
   }
 
   eliminarUsuario(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/auth/usuarios/eliminar/${id}`);
+    return this.http.delete(`${this.baseUrl}/auth/usuarios/eliminar/${id}`,{
+        responseType: 'text'
+      });
   }
 
   cambiarRol(id: string, nuevoRolId: string): Observable<any> {
-    return this.http.put(`${this.baseUrl}/auth/roles/modificar-rol/${id}`, { nuevoRolId });
+    return this.http.put(`${this.baseUrl}/auth/roles/modificar-rol/${id}`, 
+      { nuevoRolId },{
+        responseType: 'text' 
+      });
   }
 
 

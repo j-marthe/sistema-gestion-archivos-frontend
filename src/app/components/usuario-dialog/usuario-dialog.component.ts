@@ -20,8 +20,7 @@ export class UsuarioDialogComponent {
     this.usuarioForm = this.fb.group({
       nombre: [data.usuario?.nombre || '', Validators.required],
       email: [data.usuario?.email || '', [Validators.required, Validators.email]],
-      contrasena: ['', this.isEdit ? [] : [Validators.required]],
-      rolId: [data.usuario?.rolId || '', Validators.required]
+      contrasena: ['', this.isEdit ? [] : [Validators.required]]
     });
   }
 

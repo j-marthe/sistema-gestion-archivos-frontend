@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Cambiar rol de {{ data.nombre }}</h2>
+
+<form [formGroup]="rolForm" (ngSubmit)="guardar()">
+  <mat-form-field appearance="fill" class="w-full mt-4">
+    <mat-label>Nuevo rol</mat-label>
+    <mat-select formControlName="nuevoRolId">
+      <mat-option *ngFor="let rol of data.roles" [value]="rol.id">{{ rol.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="mt-4 text-right">
+    <button mat-button type="button" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">Guardar</button>
+  </div>
+</form>
