@@ -18,7 +18,6 @@ export class AuthService {
   }
 
   logout(): void {
-    console.log("Cerrar sesión");
     localStorage.removeItem('token');
     // Redirige a la página de login
     this.router.navigate(['/login']);
@@ -36,9 +35,15 @@ export class AuthService {
   }
 
   esAdmin(): boolean {
-    const decoded = this.getDecodedToken();
-    return decoded?.rol === 'Administrador';
-  }
+  const decoded = this.getDecodedToken();
+  if (!decoded) return false;
+  
+  const rol = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']; 
+  
+  const isTokenExpired = decoded.exp && (Date.now() / 1000 > decoded.exp);
+  return rol === 'Administrador' && !isTokenExpired;
+}
+
 
   editarUsuario(id: string, datos: any) {
     return this.http.put(

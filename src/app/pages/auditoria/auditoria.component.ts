@@ -18,14 +18,23 @@ export class AuditoriaComponent implements OnInit {
   }
 
   cargarAuditoria(): void {
-    this.auditoriaService.listarAuditoria().subscribe({
-      next: (data) => {
-        this.auditoria = data
-        this.filtradas = [...data]
-      },
-      error: (err) => console.error('Error cargando auditoría:', err)
-    })
+  const hoy = new Date();
+  const haceTresMeses = new Date();
+  haceTresMeses.setMonth(hoy.getMonth() - 3);
+
+  // Asegura día válido en el mes al retroceder meses
+  if (haceTresMeses.getDate() !== hoy.getDate()) {
+    haceTresMeses.setDate(1);
   }
+
+  this.auditoriaService.listarAuditoria(haceTresMeses, hoy).subscribe({
+    next: (data) => {
+      this.auditoria = data;
+      this.filtradas = [...data];
+    },
+    error: (err) => console.error('Error cargando auditoría:', err)
+  });
+}
 
   filtrar(): void {
     const term = this.searchTerm.toLowerCase()

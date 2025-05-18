@@ -7,6 +7,7 @@ import { AuditoriaComponent } from './pages/auditoria/auditoria.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ConfiguracionComponent } from './pages/configuracion/configuracion.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,10 +17,18 @@ const routes: Routes = [
     children: [
       { path: 'inicio', component: HomeComponent },
       { path: 'categorias', component: CategoriasComponent },
-      { path: 'auditoria', component: AuditoriaComponent },
       {path: 'perfil', component: PerfilComponent},
-      { path: 'configuracion', component: ConfiguracionComponent },
-      { path: '', redirectTo: 'inicio', pathMatch: 'full' }
+      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+       {
+      path: 'auditoria',
+      component: AuditoriaComponent,
+      canActivate: [AuthGuard, AdminGuard]
+    },
+    {
+      path: 'configuracion',
+      component: ConfiguracionComponent,
+      canActivate: [AuthGuard, AdminGuard]
+    },
     ]
   },
   { path: '**', redirectTo: '' }

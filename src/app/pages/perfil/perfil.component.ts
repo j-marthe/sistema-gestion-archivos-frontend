@@ -13,6 +13,7 @@ export class PerfilComponent implements OnInit {
   perfilForm!: FormGroup;
   documentos: any[] = [];
   userId: string = '';
+  nombreUsuario: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -30,7 +31,7 @@ export class PerfilComponent implements OnInit {
     const email = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
     const name = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
 
-    console.log(name);
+    this.nombreUsuario = name;
 
     this.perfilForm = this.fb.group({
       nombre: [name || '', Validators.required],

@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cambiar-rol-dialog',
-  templateUrl: './cambiar-rol-dialog.component.html'
+  templateUrl: './cambiar-rol-dialog.component.html',
+  styleUrls: ['./cambiar-rol-dialog.component.scss']
 })
 export class CambiarRolDialogComponent {
   rolForm: FormGroup;

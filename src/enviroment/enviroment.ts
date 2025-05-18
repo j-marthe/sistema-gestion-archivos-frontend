@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://miapi/api'
+    apiUrl: 'https://MiAPI/api'
   };
   

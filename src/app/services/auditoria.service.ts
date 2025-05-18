@@ -9,7 +9,19 @@ export class AuditoriaService {
 
   constructor(private http: HttpClient) {}
 
-  listarAuditoria() {
-    return this.http.get<any[]>(`${this.baseUrl}/auditoria/listar`)
+ listarAuditoria(desde?: Date, hasta?: Date) {
+
+  const params: any = {};
+
+    if (desde) {
+      params.desde = desde.toISOString();
+    }
+
+    if (hasta) {
+      params.hasta = hasta.toISOString();
+    }
+
+    return this.http.get<any[]>(`${this.baseUrl}/auditoria/listar`, { params });
   }
+
 }

@@ -28,7 +28,7 @@
 
   <mat-divider class="my-4"></mat-divider>
 
-  <h3>Últimos documentos añadidos</h3>
+  <h3>Últimos documentos añadidos por {{nombreUsuario}}</h3>
   <mat-list *ngIf="documentos.length > 0; else sinDocumentos">
     <mat-list-item *ngFor="let doc of documentos">
       <div mat-line  class="listDocument">{{ doc.nombre }}</div>

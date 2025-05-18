@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
 <div class="Admin-container">
   <mat-card>
-    <mat-card-title>Gestión de Usuarios</mat-card-title>
+    <mat-card-title>Panel de configuración</mat-card-title>
     
     <div class="buscador-container">
       <mat-form-field appearance="outline" class="buscador">
-        <mat-label>Buscar categoría</mat-label>
+        <mat-label>Buscar usuario, email o rol</mat-label>
         <input matInput [(ngModel)]="searchTerm" (keyup)="filtrar()" />
       </mat-form-field>
       <button mat-raised-button color="primary" class="my-4" (click)="abrirDialogCrear()">Añadir Usuario</button>

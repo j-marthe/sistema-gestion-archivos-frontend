@@ -15,6 +15,10 @@ export class NavbarComponent {
 
   menuAbierto: boolean = false;
 
+  get esAdmin(): boolean {
+    return this.authService.esAdmin();
+  }
+
   verPerfil(): void {
     this.router.navigate(['/perfil']);
   }
