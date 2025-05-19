@@ -40,19 +40,17 @@ export class DocumentoDetalleDialogComponent implements OnInit {
               ? metadatos.permisosAcceso.split(',').map((p: string) => p.trim())
               : []);
 
-        // Buscar el ID de la categoría por nombre
-        const categoriaEncontrada = this.categorias.find(c => c.nombre === detalle.categoria);
-        const categoriaId = categoriaEncontrada ? categoriaEncontrada.id : null;
-
+        let firmaElectronica = metadatos.firmaElectronica === 'Sí' ? true : false;
+            
         this.formulario = this.fb.group({
           nombre: [{ value: detalle.nombre, disabled: true }],
           categoria: [{ value: detalle.categoria, disabled: true }],
-          codigoClasificacion: [metadatos.codigoClasificacion || ''],
-          anio: [metadatos.anio || ''],
+          Codigo: [metadatos.codigoClasificacion || ''],
+          Año: [metadatos.anio || ''],
           estado: [metadatos.estado || ''],
           permisosAcceso: [permisosAcceso],
-          formato: [metadatos.formato || ''],
-          firmaElectronica: [metadatos.firmaElectronica || ''],
+          Formato: [metadatos.formato || ''],
+          firmaElectronica: [firmaElectronica],
           fechaUltimaModificacion: [metadatos.fechaUltimaModificacion || ''],
         });
       });
@@ -66,24 +64,30 @@ export class DocumentoDetalleDialogComponent implements OnInit {
 
 
   camposExtras: string[] = [
-    'codigoClasificacion','anio', 
-    'formato', 'firmaElectronica',
+    'Codigo',
+    'Año', 
+    'Formato',
     'fechaUltimaModificacion'
   ];
   
 
   guardarCambios(): void {
     let permisosAcceso = this.formulario.value.permisosAcceso;
-  
+
     // Convertir permisosAcceso de array a string
     if (Array.isArray(permisosAcceso)) {
       permisosAcceso = permisosAcceso.join(','); // Convertir array a string separado por coma
     }
+
+    // Convertir firmaElectronica de booleano a string
+
+    let firmaElectronica = this.formulario.value.firmaElectronica ? "Sí" : "No";
   
     // Crear objeto de datos que se enviará
     const datos = {
       ...this.formulario.value,
       permisosAcceso: permisosAcceso,  // Asignar permisosAcceso como string
+      firmaElectronica: firmaElectronica,
     };
   
     // Enviar los datos al backend
@@ -130,12 +134,9 @@ export class DocumentoDetalleDialogComponent implements OnInit {
           console.error('Error al restaurar versión:', err);
           this.snackBar.open('No se pudo restaurar la versión', 'Cerrar', { duration: 3000 });
         }
-      });
-    }
-}
-
-
-
+        });
+      }
+  }
 
   
 }

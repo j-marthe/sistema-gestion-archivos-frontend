@@ -6,9 +6,9 @@
 
 .acciones {
   display: flex;
-  gap: 1rem;
-  align-items: center;
-  margin-bottom: 1rem;
+  gap: 1.5rem;
+  align-items: baseline;
+  margin-top: 2rem;
 
   @media (max-width: 600px) {
     flex-direction: column;
@@ -18,10 +18,14 @@
 
 .buscador {
   flex: 1;
-
   @media (max-width: 600px) {
     width: 100%;
   }
+}
+
+.categoria-button{
+  padding: 20px;
+  border-radius: 50px
 }
 
 .categoria-grid {

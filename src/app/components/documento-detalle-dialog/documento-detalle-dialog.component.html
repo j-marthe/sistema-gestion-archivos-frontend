@@ -13,11 +13,7 @@
       <!-- Categoría (no editable) -->
       <mat-form-field class="w-full">
         <mat-label>Categoría</mat-label>
-        <mat-select formControlName="categoria">
-          <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
-            {{ categoria.nombre }}
-          </mat-option>
-        </mat-select>
+        <input matInput formControlName="categoria">
       </mat-form-field>
 
       <!-- Estado -->
@@ -40,7 +36,16 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Campos extras -->
+      <!-- Firma electronica -->
+      <mat-form-field class="w-full">
+        <mat-label>Firma electrónica</mat-label>
+        <mat-select formControlName="firmaElectronica">
+          <mat-option [value]="true">Sí</mat-option>
+          <mat-option [value]="false">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Otros metadatos -->
       <ng-container *ngFor="let campo of camposExtras">
         <mat-form-field class="w-full">
           <mat-label>{{ campo }}</mat-label>
@@ -73,7 +78,7 @@
 
   <mat-dialog-actions align="end">
     <button mat-button (click)="dialogRef.close()">Cancelar</button>
-    <button mat-button color="accent" (click)="guardarCambios()" [disabled]="formulario.invalid">Guardar cambios</button>
+    <button mat-raised-button color="accent" (click)="guardarCambios()" [disabled]="formulario.invalid">Guardar cambios</button>
   </mat-dialog-actions>
 </ng-container>
 

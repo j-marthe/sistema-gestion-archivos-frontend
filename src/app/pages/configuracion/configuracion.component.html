@@ -1,8 +1,10 @@
 <app-navbar></app-navbar>
 <div class="Admin-container">
+
+  <!-- CONFIGURACIÓN DE USUARIOS -->
   <mat-card>
-    <mat-card-title>Panel de configuración</mat-card-title>
-    
+    <mat-card-title>Configuración de usuarios</mat-card-title>
+
     <div class="buscador-container">
       <mat-form-field appearance="outline" class="buscador">
         <mat-label>Buscar usuario, email o rol</mat-label>
@@ -56,4 +58,39 @@
       <tr mat-row *matRowDef="let row; columns: ['nombre', 'email', 'fecha', 'rol', 'acciones'];"></tr>
     </table>
   </mat-card>
+
+  <!-- CONFIGURACIÓN DE CATEGORÍAS -->
+  <mat-card class="small-card">
+    <mat-card-title>Configuración de categorías</mat-card-title>
+
+    <div class="buscador-container">
+      <mat-form-field appearance="outline" class="buscador">
+        <mat-label>Buscar categoría</mat-label>
+        <input matInput [(ngModel)]="searchTermCategorias" (keyup)="filtrarCategoria()" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="my-4" (click)="abrirDialogCategoria()">Añadir Categoría</button>
+    </div>
+
+    <table mat-table [dataSource]="filtradasCategorias" class="mat-elevation-z1 tabla-categorias" style="width: 100%;">
+      <!-- Nombre de la Categoría -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let categoria">{{ categoria.nombre }}</td>
+      </ng-container>
+
+      <!-- Acciones -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let categoria">
+          <button mat-icon-button color="warn" (click)="eliminarCategoria(categoria.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['nombre', 'acciones']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['nombre', 'acciones'];"></tr>
+    </table>
+  </mat-card>
+
 </div>

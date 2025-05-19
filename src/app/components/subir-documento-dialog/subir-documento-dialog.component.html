@@ -17,6 +17,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Etiquetas (separadas por coma)</mat-label>
     <input matInput formControlName="etiquetas" />
+    <mat-hint>Ejemplo: Etiqueta1, Etiqueta2, etc.</mat-hint>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -47,7 +48,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Formato</mat-label>
     <input matInput formControlName="formato" placeholder="Ej: PDF" />
-    <mat-hint>Tipo de archivo (PDF, Word, etc).</mat-hint>
+    <mat-hint>Tipo de archivo (pdf, jpg, etc).</mat-hint>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -73,7 +74,7 @@
   </mat-form-field>
 
   <div>
-    <label for="archivo">Archivo:</label>
+    <label for="archivo">Archivo: </label>
     <input type="file" (change)="seleccionarArchivo($event)" />
   </div>
 </mat-dialog-content>

@@ -19,7 +19,6 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
-    // Redirige a la página de login
     this.router.navigate(['/login']);
   }
 
@@ -80,6 +79,12 @@ export class AuthService {
     return this.http.put(`${this.baseUrl}/auth/roles/modificar-rol/${id}`, 
       { nuevoRolId },{
         responseType: 'text' 
+      });
+  }
+
+  eliminarCategoria(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/documentos/categorias/eliminar/${id}`,{
+        responseType: 'text'
       });
   }
 

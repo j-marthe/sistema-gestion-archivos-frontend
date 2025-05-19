@@ -3,6 +3,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UsuarioDialogComponent } from 'src/app/components/usuario-dialog/usuario-dialog.component';
 import { CambiarRolDialogComponent } from 'src/app/components/cambiar-rol-dialog/cambiar-rol-dialog.component';
+import { CategoriaService } from 'src/app/services/categoria.service';
+import { CategoriaDialogComponent } from 'src/app/components/categoria-dialog/categoria-dialog.component';
 
 @Component({
   selector: 'app-configuracion',
@@ -16,10 +18,15 @@ export class ConfiguracionComponent implements OnInit {
   filtradas: any[] = [];
   searchTerm: string = '';
 
-  constructor(private authService: AuthService, private dialog: MatDialog) {}
+  categorias: any[] = []
+  filtradasCategorias: any[] = []
+  searchTermCategorias: string = ''
+
+  constructor(private authService: AuthService, private dialog: MatDialog, private categoriaService: CategoriaService) {}
 
   ngOnInit(): void {
     this.cargarRoles();
+    this.cargarCategorias();
   }
 
 cargarRoles(): void {
@@ -121,6 +128,42 @@ cargarUsuarios(): void {
           );
         })
       : [...this.usuarios];
+  }
+
+  cargarCategorias(): void {
+    this.categoriaService.listarCategorias().subscribe({
+      next: (dataCategorias) => {
+        this.categorias = dataCategorias
+        this.filtradasCategorias = [...dataCategorias]
+      },
+      error: (err) => console.error('Error cargando categorías', err)
+    })
+  }
+  
+  
+  filtrarCategoria(): void {
+    this.filtradasCategorias = this.categorias.filter(categoria =>
+      categoria.nombre.toLowerCase().includes(this.searchTermCategorias.toLowerCase())
+    )
+  }
+  
+  
+  abrirDialogCategoria(): void {
+    const dialogRef = this.dialog.open(CategoriaDialogComponent, {
+      width: '400px'
+  })
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.cargarCategorias()
+    })
+  }
+
+  eliminarCategoria(id: string): void {
+    if (confirm('¿Estás seguro de eliminar esta categoría?')) {
+      this.authService.eliminarCategoria(id).subscribe(() => {
+        this.cargarCategorias();
+      });
+    }
   }
   
 }
