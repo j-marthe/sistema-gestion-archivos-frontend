@@ -45,11 +45,11 @@ export class DocumentoDetalleDialogComponent implements OnInit {
         this.formulario = this.fb.group({
           nombre: [{ value: detalle.nombre, disabled: true }],
           categoria: [{ value: detalle.categoria, disabled: true }],
-          Codigo: [metadatos.codigoClasificacion || ''],
-          Año: [metadatos.anio || ''],
+          codigoClasificacion: [metadatos.codigoClasificacion || ''],
+          anio: [metadatos.anio || ''],
           estado: [metadatos.estado || ''],
           permisosAcceso: [permisosAcceso],
-          Formato: [metadatos.formato || ''],
+          formato: [metadatos.formato || ''],
           firmaElectronica: [firmaElectronica],
           fechaUltimaModificacion: [metadatos.fechaUltimaModificacion || ''],
         });
@@ -64,9 +64,9 @@ export class DocumentoDetalleDialogComponent implements OnInit {
 
 
   camposExtras: string[] = [
-    'Codigo',
-    'Año', 
-    'Formato',
+    'codigoClasificacion',
+    'anio', 
+    'formato',
     'fechaUltimaModificacion'
   ];
   
