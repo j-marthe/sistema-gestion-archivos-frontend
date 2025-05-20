@@ -8,6 +8,7 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ConfiguracionComponent } from './pages/configuracion/configuracion.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -31,7 +32,7 @@ const routes: Routes = [
     },
     ]
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

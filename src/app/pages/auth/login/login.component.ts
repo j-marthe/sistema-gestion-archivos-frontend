@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     // Si ya hay un token en localStorage, redirigimos al dashboard
     if (localStorage.getItem('token')) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/inicio']);
     }
 
     this.loginForm = this.fb.group({
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password).subscribe({
       next: (data) => {
         localStorage.setItem('token', data.token);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/inicio']);
       },
       error: (err) => {
         if (err.status === 500) {

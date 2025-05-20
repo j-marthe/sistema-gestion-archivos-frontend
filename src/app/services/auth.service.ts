@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/enviroment/enviroment';
+import { environment } from 'src/environment/environment';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 
@@ -33,15 +33,32 @@ export class AuthService {
     }
   }
 
+   getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  isTokenExpired(token?: string): boolean {
+    if (!token) token = this.getToken() ?? '';
+    if (!token) return true;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const now = Math.floor(Date.now() / 1000);
+      return payload.exp < now;
+    } catch (e) {
+      return true;
+    }
+  }
+
   esAdmin(): boolean {
-  const decoded = this.getDecodedToken();
-  if (!decoded) return false;
-  
-  const rol = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']; 
-  
-  const isTokenExpired = decoded.exp && (Date.now() / 1000 > decoded.exp);
-  return rol === 'Administrador' && !isTokenExpired;
-}
+    const decoded = this.getDecodedToken();
+    if (!decoded) return false;
+    
+    const rol = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']; 
+    
+    const isTokenExpired = decoded.exp && (Date.now() / 1000 > decoded.exp);
+    return rol === 'Administrador' && !isTokenExpired;
+  }
 
 
   editarUsuario(id: string, datos: any) {

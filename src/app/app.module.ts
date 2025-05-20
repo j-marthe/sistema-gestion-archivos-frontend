@@ -15,11 +15,15 @@ import { CategoriasComponent } from './pages/categorias/categorias.component';
 import { AuditoriaComponent } from './pages/auditoria/auditoria.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ConfiguracionComponent } from './pages/configuracion/configuracion.component';
+import { UsuarioDialogComponent } from './components/usuario-dialog/usuario-dialog.component';
+import { CambiarRolDialogComponent } from './components/cambiar-rol-dialog/cambiar-rol-dialog.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
+import { LoadingInterceptor } from './loading.interceptor';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -39,8 +43,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BusquedaAvanzadaDialogComponent } from './components/busqueda-avanzada-dialog/busqueda-avanzada-dialog.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
-import { UsuarioDialogComponent } from './components/usuario-dialog/usuario-dialog.component';
-import { CambiarRolDialogComponent } from './components/cambiar-rol-dialog/cambiar-rol-dialog.component';
+
 
 
 
@@ -64,7 +67,8 @@ import { CambiarRolDialogComponent } from './components/cambiar-rol-dialog/cambi
     PerfilComponent,
     ConfiguracionComponent,
     UsuarioDialogComponent,
-    CambiarRolDialogComponent
+    CambiarRolDialogComponent,
+    NotFoundComponent
 
   ],
   imports: [
@@ -96,6 +100,11 @@ import { CambiarRolDialogComponent } from './components/cambiar-rol-dialog/cambi
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true,
     },
   ],

@@ -1,2 +1,11 @@
-
 <router-outlet></router-outlet>
+
+<mat-progress-spinner
+  *ngIf="isLoading$ | async"
+  mode="indeterminate"
+  diameter="50"
+  class="global-spinner"
+  color="primary">
+</mat-progress-spinner>
+
+
