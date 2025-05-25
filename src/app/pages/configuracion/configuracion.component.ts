@@ -55,12 +55,23 @@ cargarUsuarios(): void {
   }
 
   eliminarUsuario(id: string): void {
-    if (confirm('¿Estás seguro de eliminar este usuario?')) {
-      this.authService.eliminarUsuario(id).subscribe(() => {
+  if (confirm('¿Estás seguro de eliminar este usuario?')) {
+    this.authService.eliminarUsuario(id).subscribe({
+      next: () => {
         this.cargarUsuarios();
-      });
-    }
+      },
+      error: (err) => {
+        if (err.status === 409 || err.status === 400) {
+          // Aquí muestras el mensaje personalizado que envía el backend
+          alert(err.error || 'No se puede eliminar el usuario porque tiene documentos asociados. Primero elimine los documentos.');
+        } else {
+          alert('Ocurrió un error al eliminar el usuario.');
+          console.error(err);
+        }
+      }
+    });
   }
+}
 
   abrirDialogCrear(): void {
     const dialogRef = this.dialog.open(UsuarioDialogComponent, {

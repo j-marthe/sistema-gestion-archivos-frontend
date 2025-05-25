@@ -11,9 +11,8 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Categoría</mat-label>
+    <mat-label>Tipología documental</mat-label>
     <mat-select formControlName="categoriaId">
-      <mat-option [value]="null">Todas</mat-option>
       <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
         {{ categoria.nombre }}
       </mat-option>

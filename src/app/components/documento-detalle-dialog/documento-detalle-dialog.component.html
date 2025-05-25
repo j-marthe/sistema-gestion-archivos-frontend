@@ -6,13 +6,13 @@
       
       <!-- Nombre (no editable) -->
       <mat-form-field class="w-full">
-        <mat-label>Nombre</mat-label>
+        <mat-label>Nombre asignado</mat-label>
         <input matInput formControlName="nombre">
       </mat-form-field>
 
       <!-- Categoría (no editable) -->
       <mat-form-field class="w-full">
-        <mat-label>Categoría</mat-label>
+        <mat-label>Tipología documental asignada</mat-label>
         <input matInput formControlName="categoria">
       </mat-form-field>
 
@@ -20,16 +20,18 @@
       <mat-form-field class="w-full">
         <mat-label>Estado</mat-label>
         <mat-select formControlName="estado">
+          <mat-option value="Borrador">Borrador</mat-option>
+          <mat-option value="Revisado">Revisado</mat-option>
           <mat-option value="Aprobado">Aprobado</mat-option>
-          <mat-option value="Rechazado">Rechazado</mat-option>
-          <mat-option value="Pendiente">Pendiente</mat-option>
+          <mat-option value="Publicado">Publicado</mat-option>
+          <mat-option value="Archivado">Archivado</mat-option>
         </mat-select>
       </mat-form-field>
 
       <!-- Permisos de acceso -->
       <mat-form-field class="w-full">
         <mat-label>Permisos de Acceso</mat-label>
-        <mat-select formControlName="permisosAcceso" multiple>
+        <mat-select formControlName="permisosAcceso" >
           <mat-option value="Administrador">Administrador</mat-option>
           <mat-option value="Usuarios del proyecto">Usuarios del proyecto</mat-option>
           <mat-option value="Global">Global</mat-option>

@@ -96,17 +96,8 @@ export class SubirDocumentoDialogComponent implements OnInit {
       formData.append('metadatos', JSON.stringify(metadatosLimpios));
     }
   
-    console.log('formData:', {
-      archivo: this.archivoSeleccionado,
-      nombre: this.form.value.nombre,
-      categoriaId: this.form.value.categoriaId,
-      etiquetas: this.form.value.etiquetas,
-      metadatos: metadatosLimpios
-    });
-  
     this.documentoService.subirDocumento(formData).subscribe({
       next: (response) => {
-        console.log('Documento subido correctamente:', response);
         this.snackBar.open('Documento subido correctamente.', 'Cerrar', { duration: 3000 });
         this.dialogRef.close(true);
       },

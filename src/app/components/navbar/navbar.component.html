@@ -11,7 +11,7 @@
   <!-- Enlaces visibles en desktop -->
   <div class="nav-links hide-on-mobile">
     <a mat-button routerLink="/inicio" routerLinkActive="active-link">Inicio</a>
-    <a mat-button routerLink="/categorias" routerLinkActive="active-link">Categorías</a>
+    <a mat-button routerLink="/tipologias" routerLinkActive="active-link">Tipología</a>
     <a *ngIf="esAdmin" mat-button routerLink="/auditoria" routerLinkActive="active-link">Auditoria</a>
     <a *ngIf="esAdmin" mat-button routerLink="/configuracion" routerLinkActive="active-link">Configuración</a>
   </div>
@@ -19,7 +19,7 @@
   <!-- Menú desplegable en móviles -->
   <mat-menu #mainMenu="matMenu">
     <button mat-menu-item routerLink="/inicio">Inicio</button>
-    <button mat-menu-item routerLink="/categorias">Categorías</button>
+    <button mat-menu-item routerLink="/tipologias">Tipología</button>
     <button *ngIf="esAdmin" mat-menu-item routerLink="/auditoria">Auditoria</button>
     <button *ngIf="esAdmin" mat-menu-item routerLink="/configuracion">Configuración</button>
   </mat-menu>

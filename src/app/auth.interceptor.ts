@@ -54,7 +54,7 @@ export class AuthInterceptor implements HttpInterceptor {
             break;
 
           case 500:
-            this.errorService.show('Error interno del servidor. Vuelve a intentarlo, el servidor esta despertando.');
+            this.errorService.show('Error interno del servidor.');
             break;
 
           default:

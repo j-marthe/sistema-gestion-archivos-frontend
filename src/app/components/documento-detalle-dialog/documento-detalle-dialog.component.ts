@@ -48,7 +48,7 @@ export class DocumentoDetalleDialogComponent implements OnInit {
           codigoClasificacion: [metadatos.codigoClasificacion || ''],
           anio: [metadatos.anio || ''],
           estado: [metadatos.estado || ''],
-          permisosAcceso: [permisosAcceso],
+          permisosAcceso: [metadatos.permisosAcceso],
           formato: [metadatos.formato || ''],
           firmaElectronica: [firmaElectronica],
           fechaUltimaModificacion: [metadatos.fechaUltimaModificacion || ''],

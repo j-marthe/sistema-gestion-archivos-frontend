@@ -82,22 +82,22 @@
 
   </mat-card>
 
-  <!-- CONFIGURACIÓN DE CATEGORÍAS -->
+  <!-- CONFIGURACIÓN DE TIPOLOGIAS -->
   <mat-card >
-    <mat-card-title>Configuración de Categorías</mat-card-title>
+    <mat-card-title>Configuración de Tipologías Documentales</mat-card-title>
 
     <div class="small-container">
       <div class="buscador-container">
         <mat-form-field appearance="outline" class="buscador">
-          <mat-label>Buscar categoría</mat-label>
+          <mat-label>Buscar tipología documental</mat-label>
           <input matInput [(ngModel)]="searchTermCategorias" (keyup)="filtrarCategoria()" />
         </mat-form-field>
-        <button mat-raised-button color="primary" class="my-4 button-principal" (click)="abrirDialogCategoria()">Añadir Categoría</button>
+        <button mat-raised-button color="primary" class="my-4 button-principal" (click)="abrirDialogCategoria()">Añadir Tipología</button>
       </div>
 
       
         <table mat-table [dataSource]="filtradasCategorias" class="mat-elevation-z1" style="display: contents;">
-          <!-- Nombre de la Categoría -->
+          <!-- Nombre de la Tipologia -->
           <ng-container matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef>Nombre</th>
             <td mat-cell *matCellDef="let categoria">{{ categoria.nombre }}</td>
